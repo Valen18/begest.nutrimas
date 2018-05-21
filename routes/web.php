@@ -51,7 +51,7 @@
 
 			$paciente->nombre = 'Valen';
 			$paciente->email = 'valen.ayesa@gmail.com';
-			$paciente->password = '123123';
+			$paciente->password = '123123'; // Ya no es necesario encriptar el password porque lo hacemos en el modelo.
 			$paciente->role_id = '1';
 			$paciente->telefono = '1234567';
 			$paciente->save();
