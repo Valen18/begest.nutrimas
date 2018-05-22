@@ -43,7 +43,8 @@ class PacientesController extends Controller
                             })
                             ->addColumn('editar', function ($paciente)
                             {
-                                return '<a href="pacientes/'.$paciente->id.'/edit" class="btn btn-sm btn-primary"><span class="oi oi-pencil" title="pencil" aria-hidden="true"></span>
+                                return '<a href="paciente/'.$paciente->id.'" class="btn btn-sm btn-info"><span class="oi oi-magnifying-glass" title="magnifying-glass" aria-hidden="true"></span>
+                                 </a> <a href="pacientes/'.$paciente->id.'/edit" class="btn btn-sm btn-primary"><span class="oi oi-pencil" title="pencil" aria-hidden="true"></span>
                                  </a><form class="d-inline-block ml-1" action="'.route("pacientes.destroy", $paciente->id).'" method="POST">
                                         <input type="hidden" name="_token" value="'.csrf_token().'">
                                         <input type="hidden" name="_method" value="DELETE">
