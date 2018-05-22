@@ -69,7 +69,7 @@ class PacientesController extends Controller
     public function create()
     {
         $sedes = Sede::pluck('nombre','id');
-
+         
         return view('pacientes.crear', compact('sedes'));
     }
 
@@ -81,7 +81,7 @@ class PacientesController extends Controller
      */
     public function store(CreateUsuarioRequest $request)
     {
-      
+         dd($request->empleado_id);
        $paciente = Usuario::create($request->all());
 
        $paciente->sedes()->attach($request->sedes);

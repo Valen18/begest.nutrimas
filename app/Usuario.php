@@ -38,6 +38,7 @@ class Usuario extends Authenticatable
         'almuerzo',
         'merienda',
         'cena',
+        'empleado_id',
     ];
 
     /**

@@ -1,7 +1,4 @@
 <?php
-
-	
-
 	// RUTAS PRINCIPALES
 
 	Route::get('/', ['as' => 'inicio', 'uses' => 'PagesController@inicio']);
