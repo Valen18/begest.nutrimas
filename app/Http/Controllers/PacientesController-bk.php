@@ -22,22 +22,17 @@ class PacientesController extends Controller
    
     public function index()
     {
-       
-
-        // $sedes = auth()->user()->sedes->pluck('id')->toArray();
-         //dd($sedes);
         return view('pacientes.index');
     }
 
     public function getData(Request $request){
-        
-        $sedes = auth()->user()->sedes->pluck('id');
 
-        $pacientes = Usuario::whereHas('sedes', function($query) use($sedes) {
-            $query->whereIn('sedes.id', $sedes);
-        });
 
-         return Datatables::of($pacientes)
+           
+        $pacientes = Usuario::with('sedes');
+
+
+        return Datatables::of($pacientes)
                             ->addColumn('nombre', function ($paciente){
                                 return '<a href="paciente/'.$paciente->id.'">'.$paciente->nombre.'</a>';
                             })
@@ -56,9 +51,18 @@ class PacientesController extends Controller
                                  return $usuario->sedes()->pluck('nombre')->first();
                             
                             })
-                            ->rawColumns(['editar', 'nombre'])->make(true);
-
+                            ->filter(function ($query) use ($request) {
+                                if ($request->has('sedes')) {
+                                    $query->where('id', '==', "%{$request->get('sede')}%");
+                                }
+                            })->rawColumns(['editar', 'nombre'])->make(true);
     }
+
+      
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

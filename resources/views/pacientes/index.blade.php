@@ -32,8 +32,14 @@
         },
 
         processing: true,
-        serverSide: true,   
-        ajax: '{{route('pacientes.getdata')}}',
+        serverSide: true,
+        render: true,  
+        ajax: {
+            url: '{{route('pacientes.getdata')}}',
+            data: function (d) {
+                d.sede = $('input[name=sede]').val();
+            }
+        },
         columns: [
            	{data: 'created_at', name: 'created_at'},
             {data: 'nombre', name: 'nombre'},
@@ -45,7 +51,10 @@
      ]
 
     });
-
+	$('#search-form').on('submit', function(e) {
+        oTable.draw();
+        e.preventDefault();
+    });
 	$('#pacientes').removeClass( 'form-inline' );
 
 </script>

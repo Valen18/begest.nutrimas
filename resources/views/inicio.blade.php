@@ -23,15 +23,7 @@
 			      </tr>
 			    </thead>
 			    <tbody>
-				    @foreach($pacientes as $paciente)
-              @if(in_array($paciente->sedes->pluck('id')->first(), $sedesHabilitadas))
-						    <tr>
-					        <td><a href="paciente/{{ $paciente->id }}">{{ $paciente->nombre }}</a></td>
-					        <td>{{ $paciente->email }}</td>
-					        <td>{{ $paciente->telefono }}</td>
-				      	</tr>
-              @endif
-				    @endforeach   
+				  
 			    </tbody>
   			</table>
 

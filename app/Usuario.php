@@ -88,7 +88,7 @@ class Usuario extends Authenticatable
 
     public static function getPacientes()
     {
-        $pacientes = Usuario::with(['sedes'])->where('role_id', 3)->get();
+        $pacientes = Usuario::where('role_id', 3)->get();
         
         return $pacientes;
     }
