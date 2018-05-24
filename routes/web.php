@@ -35,6 +35,8 @@
 
 	Route::resource('bonos', 'BonosController');
 
+	// MENSAJES
+	Route::resource('contacto', 'ContactosController');
 	// LOGIN DE USUARIOS
 	Route::get('login', ['as' => 'login', 'uses' => 
 		'Auth\LoginController@showLoginForm']);

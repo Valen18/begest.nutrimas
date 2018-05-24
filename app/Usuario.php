@@ -58,6 +58,11 @@ class Usuario extends Authenticatable
         return $this->belongsToMany(Sede::class, 'usuariosxsedes');
     }
 
+    public function empleado()
+    {
+        return $this->belongsTo(Usuario::class);
+    }
+
     public function bonos()
     {
         return $this->belongsToMany(Bono::class, 'usuariosxbonos')->withPivot('id','asistencia')->withTimestamps();
