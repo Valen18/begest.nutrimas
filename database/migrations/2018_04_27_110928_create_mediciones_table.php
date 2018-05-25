@@ -16,20 +16,20 @@ class CreateMedicionesTable extends Migration
         Schema::create('mediciones', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('usuario_id');
-            $table->float('peso', 6, 2)->nullable();
-            $table->float('grasa', 6, 2)->nullable();
-            $table->float('liquido', 6, 2)->nullable();
-            $table->float('musculo', 6, 2)->nullable();
-            $table->float('metabolismo', 6, 2)->nullable();
-            $table->float('g_visceral', 6, 2)->nullable();
-            $table->float('indice', 6, 2)->nullable();
-            $table->float('edad_fisica', 6, 2)->nullable();
-            $table->float('c_pecho', 6, 2)->nullable();
-            $table->float('c_cintura', 6, 2)->nullable();
-            $table->float('c_cadera', 6, 2)->nullable();
-            $table->float('c_brazos', 6, 2)->nullable();
-            $table->float('c_piernas', 6, 2)->nullable();
-            $table->float('imagen', 6, 2)->nullable();
+            $table->float('peso', 4, 2)->nullable();
+            $table->float('grasa', 4, 2)->nullable();
+            $table->float('liquido', 4, 2)->nullable();
+            $table->float('musculo', 4, 2)->nullable();
+            $table->float('metabolismo', 4, 2)->nullable();
+            $table->float('g_visceral', 4, 2)->nullable();
+            $table->float('indice', 4, 2)->nullable();
+            $table->float('edad_fisica', 4, 2)->nullable();
+            $table->float('c_pecho', 4, 2)->nullable();
+            $table->float('c_cintura', 4, 2)->nullable();
+            $table->float('c_cadera', 4, 2)->nullable();
+            $table->float('c_brazos', 4, 2)->nullable();
+            $table->float('c_piernas', 4, 2)->nullable();
+            $table->float('imagen', 4, 2)->nullable();
             $table->timestamps();
         });
     }

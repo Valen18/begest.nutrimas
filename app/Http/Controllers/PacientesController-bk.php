@@ -22,29 +22,23 @@ class PacientesController extends Controller
    
     public function index()
     {
-       
-
-        // $sedes = auth()->user()->sedes->pluck('id')->toArray();
-         //dd($sedes);
         return view('pacientes.index');
     }
 
     public function getData(Request $request){
-        
-        $sedes = auth()->user()->sedes->pluck('id');
 
-        $pacientes = Usuario::whereHas('sedes', function($query) use($sedes) {
-            $query->whereIn('sedes.id', $sedes);
-        });
 
-         return Datatables::of($pacientes)
+           
+        $pacientes = Usuario::with('sedes');
+
+
+        return Datatables::of($pacientes)
                             ->addColumn('nombre', function ($paciente){
                                 return '<a href="paciente/'.$paciente->id.'">'.$paciente->nombre.'</a>';
                             })
                             ->addColumn('editar', function ($paciente)
                             {
-                                return '<a href="paciente/'.$paciente->id.'" class="btn btn-sm btn-info"><span class="oi oi-magnifying-glass" title="magnifying-glass" aria-hidden="true"></span>
-                                 </a> <a href="pacientes/'.$paciente->id.'/edit" class="btn btn-sm btn-primary"><span class="oi oi-pencil" title="pencil" aria-hidden="true"></span>
+                                return '<a href="pacientes/'.$paciente->id.'/edit" class="btn btn-sm btn-primary"><span class="oi oi-pencil" title="pencil" aria-hidden="true"></span>
                                  </a><form class="d-inline-block ml-1" action="'.route("pacientes.destroy", $paciente->id).'" method="POST">
                                         <input type="hidden" name="_token" value="'.csrf_token().'">
                                         <input type="hidden" name="_method" value="DELETE">
@@ -57,9 +51,18 @@ class PacientesController extends Controller
                                  return $usuario->sedes()->pluck('nombre')->first();
                             
                             })
-                            ->rawColumns(['editar', 'nombre'])->make(true);
-
+                            ->filter(function ($query) use ($request) {
+                                if ($request->has('sedes')) {
+                                    $query->where('id', '==', "%{$request->get('sede')}%");
+                                }
+                            })->rawColumns(['editar', 'nombre'])->make(true);
     }
+
+      
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -69,10 +72,7 @@ class PacientesController extends Controller
     public function create()
     {
         $sedes = Sede::pluck('nombre','id');
-<<<<<<< HEAD
-=======
 
->>>>>>> parent of 5823f0a... act
         return view('pacientes.crear', compact('sedes'));
     }
 
@@ -84,11 +84,7 @@ class PacientesController extends Controller
      */
     public function store(CreateUsuarioRequest $request)
     {
-<<<<<<< HEAD
-                
-=======
       
->>>>>>> parent of 5823f0a... act
        $paciente = Usuario::create($request->all());
 
        $paciente->sedes()->attach($request->sedes);
