@@ -70,6 +70,10 @@ class PacientesController extends Controller
     {
         $sedes = Sede::pluck('nombre','id');
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 5823f0a... act
 =======
 
 >>>>>>> parent of 5823f0a... act
@@ -85,7 +89,11 @@ class PacientesController extends Controller
     public function store(CreateUsuarioRequest $request)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 
+=======
+      
+>>>>>>> parent of 5823f0a... act
 =======
       
 >>>>>>> parent of 5823f0a... act

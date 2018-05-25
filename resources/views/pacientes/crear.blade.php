@@ -15,7 +15,10 @@
 						{!! csrf_field() !!}
 						<input name="role_id" type="hidden" value="3">
 <<<<<<< HEAD
+<<<<<<< HEAD
 						<input name="empleado_id" type="hidden" value="{{auth()->user()->id}}">
+=======
+>>>>>>> parent of 5823f0a... act
 =======
 >>>>>>> parent of 5823f0a... act
 						<input name="password" type="hidden" value="nutrimas">
