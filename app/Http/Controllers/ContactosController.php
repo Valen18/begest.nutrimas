@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Usuario;
+use App\Mensaje;
+
 use Illuminate\Http\Request;
 
 class ContactosController extends Controller
@@ -13,6 +16,9 @@ class ContactosController extends Controller
      */
     public function index()
     {
+
+        $mensajes = Usuario::all();
+        dd($mensajes);
         return view('contactos.index');
     }
 

@@ -6,6 +6,7 @@
   		<div class="card">
   			<div class="card-body">
 				<h1 class="display-5">{{ $paciente->nombre }} <small class="text-muted">{{ $paciente->telefono }} &bull; {{ $paciente->email }}</small>@if(auth()->user()->hasRoles(['admin', 'empleado']))<a href="/pacientes/{{$paciente->id}}/edit" class="float-right btn btn-warning btn-sm">Editar Paciente</a>@endif</h1>
+				
 				<h4>Profesional: {{$paciente->empleado->nombre}}</h4>
   			</div>
 		</div>

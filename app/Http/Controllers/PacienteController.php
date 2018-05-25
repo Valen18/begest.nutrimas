@@ -25,7 +25,7 @@ class PacienteController extends Controller
     public function show($id)
     {
         $paciente = Usuario::findOrFail($id);
-        //dd($paciente->empleado->nombre); -> Empleado que lo crea y lo lleva
+        dd($paciente->empleado->nombre);
         $mediciones = array_column(Medicion::where('usuario_id', $paciente->id)->orderBy('created_at', 'asc')->get()->toArray(), 'created_at');
 
         $peso = array_column(Medicion::where('usuario_id', $paciente->id)->orderBy('created_at', 'asc')->get()->toArray(), 'peso');

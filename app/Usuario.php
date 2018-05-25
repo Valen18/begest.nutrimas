@@ -5,6 +5,7 @@ namespace App;
 use App\Role;
 use App\Sede;
 use App\Medicion;
+use App\Mensaje;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -75,6 +76,7 @@ class Usuario extends Authenticatable
     public function mediciones(){
         return $this->hasMany(Medicion::class);
     }
+
     
     public function hasRoles(array $roles)
     {
