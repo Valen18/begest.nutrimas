@@ -7,7 +7,6 @@
   			<div class="card-body">
 				<h1 class="display-5">{{ $paciente->nombre }} <small class="text-muted">{{ $paciente->telefono }} &bull; {{ $paciente->email }}</small>@if(auth()->user()->hasRoles(['admin', 'empleado']))<a href="/pacientes/{{$paciente->id}}/edit" class="float-right btn btn-warning btn-sm">Editar Paciente</a>@endif</h1>
 				
-				<h4>Profesional: {{$paciente->empleado->nombre}}</h4>
   			</div>
 		</div>
 
@@ -68,6 +67,15 @@
 			        		role="tab" 
 			        		aria-controls="mediciones" 
 			        		aria-selected="true">MEDICIONES</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" 
+			        		id="fisioterapia-tab" 
+			        		data-toggle="tab"
+			        		href="#fisioterapia" 
+			        		role="tab" 
+			        		aria-controls="entrenamientos" 
+			        		aria-selected="true">FISIOTERAPIA</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" 
@@ -220,6 +228,50 @@
 						@endif
   					</div>
 
+					<div class="tab-pane fade" data-target="#fisioterapia" id="fisioterapia" role="tabpanel">
+						
+						<h3 class="float-left">Fisioterapia</h3>
+
+						@if(auth()->user()->hasRoles(['admin', 'empleado']))
+							<a href="{{ route('fisio.create', $paciente->id) }}" class="btn btn-sm btn-success float-right">+ Consulta</a>
+						@endif
+
+						<table class="table table-striped table-hover table-bordered">
+															
+								<tr class="text-center">
+									<th>Fecha de Consulta</th>
+									<th>Tratamiento</th>
+									<th>Evoeva</th>
+									<th>Evo Tono Musc</th>
+									<th>Observaciones</th>
+									<th>&nbsp;</th>
+								</tr>
+								
+								@foreach($paciente->fisios->sortByDesc('created_at') as $fisio)
+									
+									<tr class="text-center">
+										<td>{{Carbon\Carbon::parse($fisio->created_at)->format('d-m-Y')}}</td>
+										<td>{{$fisio->tratamiento}}</td>
+										<td>{{$fisio->evoeva}}</td>
+										<td>{{$fisio->evotonomusc}}</td>
+										<td>{{$fisio->observaciones}}</td>
+										
+											<td><a class="btn btn-sm btn-success" 
+													href="#">
+													
+													<span class="oi oi-pencil" title="oi-pencil" aria-hidden="true"></span>
+
+												</a>
+											</td>
+										
+											
+									</tr>
+								@endforeach
+
+						</table>
+						
+  					</div>
+
   					<div class="tab-pane fade" data-target="#bonos" id="bonos" role="tabpanel">
 						
 						<h3 class="float-left">Bonos</h3>
@@ -228,10 +280,7 @@
 						@endif
 						
 						<table class="table table-striped table-hover table-bordered">
-							
-							
-
-								
+															
 								<tr class="text-center">
 									<th>Contratado</th>
 									<th>Última visita</th>

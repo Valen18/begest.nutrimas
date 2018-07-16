@@ -17,9 +17,12 @@
 	
 	Route::get('pacientes/getdata', 'PacientesController@getData')->name('pacientes.getdata');
 	
+
 	Route::resource('paciente', 'PacienteController');
 	Route::resource('pacientes', 'PacientesController');
 	Route::resource('firma', 'FirmasController');
+	Route::resource('fisio', 'FisiosController');
+		Route::get('fisio/create/{id}', 'FisiosController@create')->name('fisio.create');
 
 	Route::resource('medicion', 'MedicionController');
 
@@ -75,10 +78,3 @@
 		return $paciente;
 	});
 
-	Route::get('roles', function(){
-		return \App\Role::with('user')->get();
-	});
-
-Route::get('datatable', 'DataTableController@index');
-
-Route::get('/getdata', 'DataTableController@getPosts')->name('datatable.getdata');

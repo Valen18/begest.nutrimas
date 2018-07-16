@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Sede;
 
 class SedesController extends Controller
 {
@@ -13,7 +14,10 @@ class SedesController extends Controller
      */
     public function index()
     {
-        return view('sedes.seleccion');
+        $sedes = Sede::all();
+
+
+        return view('sedes.index', compact('sedes'));
     }
 
     /**
@@ -23,7 +27,7 @@ class SedesController extends Controller
      */
     public function create()
     {
-        //
+        return view('sedes.crear');
     }
 
     /**
@@ -34,7 +38,13 @@ class SedesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 1. Almacenar
+
+        $sede = Sede::create($request->all());
+        
+        // 2. Redireccionar
+
+        return redirect()->route('sedes.index')->with('info', 'Sede creada con éxito.');
     }
 
     /**
@@ -56,7 +66,11 @@ class SedesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sede = Sede::findOrFail($id);
+
+        //$this->authorize('edit', $empleado);
+
+        return view('sedes.editar', compact('sede'));
     }
 
     /**
@@ -68,7 +82,12 @@ class SedesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sede = Sede::findOrFail($id);
+            
+            //$this->authorize('update', $empleado);
+        $sede->update($request->all());
+            // Redireccionar
+            return redirect()->route('sedes.index')->with('info', 'Sede editada con éxito.');
     }
 
     /**
@@ -79,6 +98,12 @@ class SedesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sede = Sede::findOrFail($id);
+        $sede->delete();
+
+        //$this->authorize('destroy', $empleado);
+        
+        // Redireccionar
+        return redirect()->route('sedes.index');
     }
 }

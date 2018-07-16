@@ -37,11 +37,18 @@
       <li class="nav-item">
         <a class="nav-link {{ activeMenu('/') }}" href="/">Inicio <span class="sr-only">(actual)</span></a>
       </li>
+     	 @if(auth()->user()->hasRoles(['admin']))
+			<li class="nav-item">
+	        	<a class="nav-link {{ activeMenu('sedes*') }}"  href="/sedes">Sedes</a>
+	      	</li>     
+	     @endif
+
 	     @if(auth()->user()->hasRoles(['admin']))
 			<li class="nav-item">
 	        	<a class="nav-link {{ activeMenu('empleados*') }}"  href="/empleados">Empleados</a>
 	      	</li>     
 	     @endif
+
 	    
 	     @if(auth()->user()->hasRoles(['admin', 'empleado']))
 	      <li class="nav-item">

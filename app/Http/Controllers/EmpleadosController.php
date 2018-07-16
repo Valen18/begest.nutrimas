@@ -72,7 +72,7 @@ class EmpleadosController extends Controller
             }
             $empleado->sedes()->sync($request->sedes);
             // Redireccionar
-            return redirect()->route('empleados.index')->with('info', 'Empleado editado con éxito.');;
+            return redirect()->route('empleados.index')->with('info', 'Empleado editado con éxito.');
     }
 
     public function destroy($id)

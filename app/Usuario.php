@@ -6,6 +6,9 @@ use App\Role;
 use App\Sede;
 use App\Medicion;
 use App\Mensaje;
+use App\Bono;
+use App\Fisio;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -66,6 +69,11 @@ class Usuario extends Authenticatable
     public function bonos()
     {
         return $this->belongsToMany(Bono::class, 'usuariosxbonos')->withPivot('id','asistencia')->withTimestamps();
+    }
+
+    public function fisios()
+    {
+        return $this->hasMany(Fisio::class);
     }
 
     public function role(){

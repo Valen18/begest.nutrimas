@@ -9,6 +9,6 @@ class Bono extends Model
 {
     public function usuarios()
     {
-        return $this->belongsToMany(Usuario::class, 'usuariosxsedes')->withPivot('id','asistencia')->withTimestamps();
+        return $this->belongsToMany(Usuario::class, 'usuariosxsedes')->withPivot('id')->withTimestamps();
     }
 }
